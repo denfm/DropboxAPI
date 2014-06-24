@@ -64,9 +64,6 @@ class DropBoxUpload():
 		_files = [];
 		
 		for dir, subdirs, files in os.walk(self.sourcePath):
-
-			if dir == self.sourcePath:
-				continue
 					
 			self.count_find_dirs += 1
 			
@@ -93,7 +90,7 @@ class DropBoxUpload():
 				if len(files) is not 0:
 					for file in files:
 					
-						filename = self.targetPath + c_dir + '/' + file
+						filename = (self.targetPath + c_dir + '/' + file).encode('utf-8')
 						self.count_find_files += 1
 						
 						if len(self.ignoreFiles) is not 0 and file in self.ignoreFiles:
@@ -109,7 +106,7 @@ class DropBoxUpload():
 							try:
 								path_file = os.path.expanduser(os.path.join(dir, file));
 								from_file = open(path_file, "rb")
-								self.api_client.put_file(self.targetPath + c_dir + '/' + file, from_file)
+								self.api_client.put_file(self.targetPath + c_dir + '/' + file, from_file, True)
 								self.count_transfer_files += 1	
 								_msg += u'Успешно!'
 							except Exception: 
@@ -157,6 +154,27 @@ class DropBoxUpload():
 		
 	def cryExit(msg = u'Работа скрипта заверешна. Устраните все ошибки!'):
 		exit(msg);
+
+def force_utf8_hack():
+
+	reload(sys)
+	sys.setdefaultencoding('utf-8')
+	
+	for attr in dir(locale):
+		if attr[0:3] != 'LC_':
+			continue
+			
+		aref = getattr(locale, attr)
+		locale.setlocale(aref, '')
+		(lang, enc) = locale.getlocale(aref)
+		
+		if lang != None:
+			try:
+				locale.setlocale(aref, (lang, 'UTF-8'))
+			except:
+				os.environ[attr] = lang + '.UTF-8'
+
+force_utf8_hack()
 		
 def main():
     if APP_KEY == '' or APP_SECRET == '' or ACCESS_TOKEN == '':
@@ -171,3 +189,4 @@ if __name__ == '__main__':
     main()
 	
 print "------------------------------------------------------------\n"
+
