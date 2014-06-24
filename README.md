@@ -13,16 +13,19 @@ DropboxAPI: dropbox_uploadFiles.py
   3. Создать  access token
   4. В скрипт dropbox_uploadFiles.py записать "App key" в "APP_KEY", "App secret" в "APP_SECRET", "access token" в "ACCESS_TOKEN"
   5. Добавить права на выполнение скрипта: chmod +x ./dropbox_uploadFiles.py
-  6. 
   
 Использование
 ==========
-Примеры:
+Пример:
 ./dropbox_uploadFiles.py -s /opt/www/vhosts/my_website -t /remote_folder -i1 "temp|assets|cache|framework|log" -i2 config.py -i3 ".bin|.log"
 
   -s /opt/www/vhosts/my_website - директория нашего проекта, которого надо забекапить [ОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР]
+  
   -t /remote_folder - папка в DropBOX куда будет скопирован наш проект (если папки нету, то скрипт ее создаст) [ОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР]
+  
   -i1 "temp|assets|cache|framework|log" - директории, которые не нужно копировать (будут проигнорированы)
+  
   -i2 "config.py" - файлы, которые не нужно копировать (будут проигнорированы)
+  
   -i3 ".bin|.log" - расширения файлов, которые не нужно копировать (такие файлы будут проигнорированы)
 
