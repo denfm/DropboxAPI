@@ -5,6 +5,7 @@ DropboxAPI: dropbox_uploadFiles.py
   1. Исключать из бекапа определенные директории (cache, framework ...)
   2. Исключать из бекапа определенные файлы (db.log, config.py)
   3. Исключать из бекапа определенные расширения файлов (.cfg, .log, .backup)
+
 Установка
 ==========
   1. Для начала вам нужно установить Dropbox CORE API: https://www.dropbox.com/developers/core/sdks/python
@@ -12,6 +13,7 @@ DropboxAPI: dropbox_uploadFiles.py
   3. Создать  access token
   4. В скрипт dropbox_uploadFiles.py записать "App key" в "APP_KEY", "App secret" в "APP_SECRET", "access token" в "ACCESS_TOKEN"
   5. Добавить права на выполнение скрипта: chmod +x ./dropbox_uploadFiles.py
+
 Использование
 ==========
 Пример:
